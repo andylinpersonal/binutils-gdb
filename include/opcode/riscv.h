@@ -132,6 +132,15 @@ static inline unsigned int riscv_insn_length (insn_t insn)
   ((RV_X(x, 25, 1)) | (RV_X(x, 20, 5) << 1) | (RV_IMM_SIGN_N(x, 20, 5) << 5))
 #define EXTRACT_CV_SIMD_UIMM6(x) \
   ((RV_X(x, 25, 1)) | (RV_X(x, 20, 5) << 1))
+/* Vendor-specific (Qinheng QingKe Xw) extract macros.  */
+#define EXTRACT_WCH_QK_UIMM5(x) \
+  ((RV_X(x, 12, 1)) | (RV_X(x, 10, 2) << 3) | (RV_X(x, 5, 2) << 1))
+#define EXTRACT_WCH_QK_UIMM6_LSB0(x) \
+  ((RV_X(x, 10, 3) << 3) | (RV_X(x, 5, 2) << 1))
+#define EXTRACT_WCH_QK_UIMM4(x) \
+  (RV_X(x, 7, 4))
+#define EXTRACT_WCH_QK_UIMM5_LSB0(x) \
+  ((RV_X(x, 8, 3) << 1) | (RV_X(x, 7, 1) << 4))
 
 #define ENCODE_ITYPE_IMM(x) \
   (RV_X(x, 0, 12) << 20)
@@ -200,6 +209,15 @@ static inline unsigned int riscv_insn_length (insn_t insn)
   ((RV_X(x, 0, 1) << 25) | (RV_X(x, 1, 5) << 20))
 #define ENCODE_CV_SIMD_UIMM6(x) \
   ((RV_X(x, 0, 1) << 25) | (RV_X(x, 1, 5) << 20))
+/* Vendor-specific (Qinheng QingKe Xw) encode macros.  */
+#define ENCODE_WCH_QK_UIMM5(x) \
+  ((RV_X(x, 0, 1) << 12) | (RV_X(x, 3, 2) << 10) | (RV_X(x, 1, 2) << 5))
+#define ENCODE_WCH_QK_UIMM6_LSB0(x) \
+  ((RV_X(x, 5, 1) << 12) | (RV_X(x, 3, 2) << 10) | (RV_X(x, 1, 2) << 5))
+#define ENCODE_WCH_QK_UIMM4(x) \
+  (RV_X(x, 0, 4) << 7)
+#define ENCODE_WCH_QK_UIMM5_LSB0(x) \
+  ((RV_X(x, 1, 3) << 8) | (RV_X(x, 4, 1) << 7))
 
 #define VALID_ITYPE_IMM(x) (EXTRACT_ITYPE_IMM(ENCODE_ITYPE_IMM(x)) == (x))
 #define VALID_STYPE_IMM(x) (EXTRACT_STYPE_IMM(ENCODE_STYPE_IMM(x)) == (x))
@@ -228,6 +246,11 @@ static inline unsigned int riscv_insn_length (insn_t insn)
 #define VALID_ZCB_BYTE_UIMM(x) (EXTRACT_ZCB_BYTE_UIMM(ENCODE_ZCB_BYTE_UIMM(x)) == (x))
 #define VALID_ZCB_HALFWORD_UIMM(x) (EXTRACT_ZCB_HALFWORD_UIMM(ENCODE_ZCB_HALFWORD_UIMM(x)) == (x))
 #define VALID_ZCMP_SPIMM(x) (EXTRACT_ZCMP_SPIMM(ENCODE_ZCMP_SPIMM(x)) == (x))
+/* Vendor-specific (Qinheng QingKe Xw) validation macros.  */
+#define VALID_WCH_QK_UIMM5(x) (EXTRACT_WCH_QK_UIMM5(ENCODE_WCH_QK_UIMM5(x)) == (x))
+#define VALID_WCH_QK_UIMM6_LSB0(x) (EXTRACT_WCH_QK_UIMM6_LSB0(ENCODE_WCH_QK_UIMM6_LSB0(x)) == (x))
+#define VALID_WCH_QK_UIMM4(x) (EXTRACT_WCH_QK_UIMM4(ENCODE_WCH_QK_UIMM4(x)) == (x))
+#define VALID_WCH_QK_UIMM5_LSB0(x) (EXTRACT_WCH_QK_UIMM5_LSB0(ENCODE_WCH_QK_UIMM5_LSB0(x)) == (x))
 
 #define RISCV_RTYPE(insn, rd, rs1, rs2) \
   ((MATCH_ ## insn) | ((rd) << OP_SH_RD) | ((rs1) << OP_SH_RS1) | ((rs2) << OP_SH_RS2))
@@ -557,6 +580,7 @@ enum riscv_insn_class
   INSN_CLASS_XSFVQMACCQOQ,
   INSN_CLASS_XSFVQMACCDOD,
   INSN_CLASS_XSFVFNRCLIPXFQF,
+  INSN_CLASS_XWCH_QK,
 };
 
 /* This structure holds information for a particular instruction.  */

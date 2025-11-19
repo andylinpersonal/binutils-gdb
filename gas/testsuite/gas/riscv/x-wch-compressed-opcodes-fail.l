@@ -1,0 +1,33 @@
+.*: Assembler messages:
+.*: Error: unrecognized opcode `wchqk.c.lbu x8,0\(x8\)', extension `xw' required
+.*: Error: unrecognized opcode `wchqk.c.sb x8,0\(x8\)', extension `xw' required
+.*: Error: unrecognized opcode `wchqk.c.sb x8,-2\(x8\)', extension `xw' required
+.*: Error: unrecognized opcode `wchqk.c.sb x8,0\(x7\)', extension `xw' required
+.*: Error: illegal operands `wchqk.c.sb x7,0\(x8\)'
+.*: Error: illegal operands `wchqk.c.sb x7,-2\(x20\)'
+.*: Error: illegal operands `wchqk.c.lhu x8,1\(x8\)'
+.*: Error: illegal operands `wchqk.c.lhu x8,64\(x8\)'
+.*: Error: illegal operands `wchqk.c.sh x8,1\(x8\)'
+.*: Error: illegal operands `wchqk.c.sh x8,64\(x8\)'
+.*: Error: illegal operands `wchqk.c.sh x8,-1\(x8\)'
+.*: Error: illegal operands `wchqk.c.sh x8,-2\(x8\)'
+.*: Error: illegal operands `wchqk.c.sh x8,0\(x7\)'
+.*: Error: illegal operands `wchqk.c.sh x7,0\(x8\)'
+.*: Error: illegal operands `wchqk.c.sh x7,-2\(x20\)'
+.*: Error: illegal operands `wchqk.c.lbusp x8,0\(x8\)'
+.*: Error: illegal operands `wchqk.c.lbusp x8,32\(sp\)'
+.*: Error: illegal operands `wchqk.c.sbsp x8,0\(x8\)'
+.*: Error: illegal operands `wchqk.c.sbsp x8,32\(sp\)'
+.*: Error: illegal operands `wchqk.c.sbsp x8,-2\(sp\)'
+.*: Error: illegal operands `wchqk.c.sbsp x7,0\(sp\)'
+.*: Error: illegal operands `wchqk.c.sbsp x7,-2\(sp\)'
+.*: Error: illegal operands `wchqk.c.lhusp x8,0\(x8\)'
+.*: Error: illegal operands `wchqk.c.lhusp x8,1\(sp\)'
+.*: Error: illegal operands `wchqk.c.lhusp x8,32\(sp\)'
+.*: Error: illegal operands `wchqk.c.shsp x8,0\(x8\)'
+.*: Error: illegal operands `wchqk.c.shsp x8,1\(sp\)'
+.*: Error: illegal operands `wchqk.c.shsp x8,32\(sp\)'
+.*: Error: illegal operands `wchqk.c.shsp x8,-1\(sp\)'
+.*: Error: illegal operands `wchqk.c.shsp x8,-2\(sp\)'
+.*: Error: illegal operands `wchqk.c.shsp x7,0\(sp\)'
+.*: Error: illegal operands `wchqk.c.shsp x7,-2\(sp\)'

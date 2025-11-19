@@ -1505,6 +1505,7 @@ static struct riscv_supported_ext riscv_supported_vendor_x_ext[] =
   {"xsfvqmaccqoq",	ISA_SPEC_CLASS_DRAFT,	1, 0, 0},
   {"xsfvqmaccdod",	ISA_SPEC_CLASS_DRAFT,	1, 0, 0},
   {"xsfvfnrclipxfqf",	ISA_SPEC_CLASS_DRAFT,	1, 0, 0},
+  {"xw",		ISA_SPEC_CLASS_DRAFT,	1, 0, 0 },
   {NULL, 0, 0, 0, 0}
 };
 
@@ -2113,6 +2114,12 @@ riscv_parse_check_conflicts (riscv_parse_subset_t *rps)
     {
       rps->error_handler
 	(_("`xtheadvector' is conflict with the `v' extension"));
+      no_conflict = false;
+    }
+  if (riscv_subset_supports (rps, "xw")
+      && (riscv_subset_supports (rps, "d") || riscv_subset_supports (rps, "zcb")))
+    {
+      rps->error_handler (_("xw' is conflict with the `d/zcb' extension"));
       no_conflict = false;
     }
 
@@ -2794,6 +2801,8 @@ riscv_multi_subset_supports (riscv_parse_subset_t *rps,
       return riscv_subset_supports (rps, "xsfvqmaccdod");
     case INSN_CLASS_XSFVFNRCLIPXFQF:
       return riscv_subset_supports (rps, "xsfvfnrclipxfqf");
+    case INSN_CLASS_XWCH_QK:
+      return riscv_subset_supports (rps, "xw");
     default:
       rps->error_handler
         (_("internal: unreachable INSN_CLASS_*"));
@@ -2868,7 +2877,7 @@ riscv_multi_subset_supports_ext (riscv_parse_subset_t *rps,
 	{
 	  if (!riscv_subset_supports (rps, "c")
 	      && !riscv_subset_supports (rps, "zcf"))
-	    return _("f' and `c', or `f' and `zcf"); 
+	    return _("f' and `c', or `f' and `zcf");
 	  else
 	    return "f";
 	}
@@ -3074,6 +3083,8 @@ riscv_multi_subset_supports_ext (riscv_parse_subset_t *rps,
       return "xtheadzvamo";
     case INSN_CLASS_XSFCEASE:
       return "xsfcease";
+    case INSN_CLASS_XWCH_QK:
+      return "xw";
     default:
       rps->error_handler
         (_("internal: unreachable INSN_CLASS_*"));
