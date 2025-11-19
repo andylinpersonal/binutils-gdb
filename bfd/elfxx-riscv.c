@@ -1636,6 +1636,7 @@ static struct riscv_supported_ext riscv_supported_vendor_x_ext[] =
   {"xmipscmov",		ISA_SPEC_CLASS_DRAFT,	1, 0, 0 },
   {"xmipsexectl",	ISA_SPEC_CLASS_DRAFT,	1, 0, 0 },
   {"xmipslsp",		ISA_SPEC_CLASS_DRAFT,	1, 0, 0 },
+  {"xw",		ISA_SPEC_CLASS_DRAFT,	1, 0, 0 },
   {NULL, 0, 0, 0, 0}
 };
 
@@ -2286,6 +2287,12 @@ riscv_parse_check_conflicts (riscv_parse_subset_t *rps)
 			  xlen);
       no_conflict = false;
     }
+  if (riscv_subset_supports (rps, "xw")
+      && (riscv_subset_supports (rps, "d") || riscv_subset_supports (rps, "zcb")))
+    {
+      rps->error_handler (_("xw' is conflict with the `d/zcb' extension"));
+      no_conflict = false;
+    }
 
   bool support_zve = false;
   bool support_zvl = false;
@@ -2771,7 +2778,7 @@ riscv_update_subset_norvc (riscv_parse_subset_t *rps)
 {
   return riscv_update_subset1 (rps, rps->subset_list->head,
 			       "-c,-zca,-zcd,-zcf,-zcb,-zce,-zcmp,-zcmt,"
-			       "-zcmop,-zclsd");
+			       "-zcmop,-zclsd,-xw");
 }
 
 /* Check if the FEATURE subset is supported or not in the subset list.
@@ -3054,6 +3061,8 @@ riscv_multi_subset_supports (riscv_parse_subset_t *rps,
       return riscv_subset_supports (rps, "xmipsexectl");
     case INSN_CLASS_XMIPSLSP:
       return riscv_subset_supports (rps, "xmipslsp");
+    case INSN_CLASS_XWCH_QK:
+      return riscv_subset_supports (rps, "xw");
     default:
       rps->error_handler
         (_("internal: unreachable INSN_CLASS_*"));
@@ -3338,6 +3347,8 @@ riscv_multi_subset_supports_ext (riscv_parse_subset_t *rps,
       return "xtheadzvamo";
     case INSN_CLASS_XSFCEASE:
       return "xsfcease";
+    case INSN_CLASS_XWCH_QK:
+      return "xw";
     default:
       rps->error_handler
         (_("internal: unreachable INSN_CLASS_*"));
