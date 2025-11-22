@@ -918,4 +918,10 @@ The XMipsSlsp extension provides instructions mips.ldp, mips.lwp, mips.sdp and m
 
 It is documented in @url{https://mips.com/wp-content/uploads/2025/03/P8700-F_Programmers_Reference_Manual_Rev1.82_3-19-2025.pdf}.
 
+@item XW
+
+The XW extension provide additional compressed opcodes present in some QingKe cores from Nanjing Qinheng Microelectronics Co., Ltd. (WCH).
+
+It is documented in @url{http://web.archive.org/web/20251121133229/https://discourse.llvm.org/t/rfc-supporting-wch-qingke-xw-compressed-opcodes/79392/12}
+
 @end table

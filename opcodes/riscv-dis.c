@@ -917,6 +917,29 @@ print_insn_args (const char *oparg, insn_t l, bfd_vma pc, disassemble_info *info
 		  goto undefined_modifier;
 		}
 	      break;
+	    case 'w': /* Vendor-specific (Qinghen QingKe Xw) operands.  */
+	      switch (*++oparg)
+		{
+		case 'b':
+		  print (info->stream, dis_style_immediate, "%d",
+			 (unsigned)EXTRACT_WCH_QK_UIMM5 (l));
+		  break;
+		case '6':
+		  print (info->stream, dis_style_immediate, "%d",
+			 (unsigned)EXTRACT_WCH_QK_UIMM6_LSB0 (l));
+		  break;
+		case '4':
+		  print (info->stream, dis_style_immediate, "%d",
+			 (unsigned)EXTRACT_WCH_QK_UIMM4 (l));
+		  break;
+		case '5':
+		  print (info->stream, dis_style_immediate, "%d",
+			 (unsigned)EXTRACT_WCH_QK_UIMM5_LSB0 (l));
+		  break;
+		default:
+		  goto undefined_modifier;
+		}
+	      break;
 	    default:
 	      goto undefined_modifier;
 	    }

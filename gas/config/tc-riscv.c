@@ -1771,6 +1771,17 @@ validate_riscv_insn (const struct riscv_opcode *opc, int length)
 		    goto unknown_validate_operand;
 		}
 		break;
+	    case 'w': /* Vendor-specific (Qinheng QingKe Xw) operands. */
+	      switch(*++oparg)
+		{
+		  case 'b': used_bits |= ENCODE_WCH_QK_UIMM5 (-1); break; /* Xwb */
+		  case '6': used_bits |= ENCODE_WCH_QK_UIMM6_LSB0 (-1); break; /* Xw6 */
+		  case '4': used_bits |= ENCODE_WCH_QK_UIMM4 (-1); break; /* Xw4 */
+		  case '5': used_bits |= ENCODE_WCH_QK_UIMM5_LSB0 (-1); break; /* Xw5 */
+		  default:
+		    goto unknown_validate_operand;
+		}
+		break;
 	    default:
 	      goto unknown_validate_operand;
 	    }
@@ -4287,6 +4298,54 @@ riscv_ip (char *str, struct riscv_cl_insn *ip, expressionS *imm_expr,
 		    }
 		  break;
 
+		case 'w': /* Vendor-specific (Qinheng QingKe Xw) operands. */
+		  switch (*++oparg)
+		    {
+		    case 'b': /* Xwb: uimm5 0-31. */
+		      /* For qk.c.lbu and qk.c.sb. */
+		      if (riscv_handle_implicit_zero_offset (imm_expr, asarg))
+			continue;
+		      if (my_getSmallExpression (imm_expr, imm_reloc, asarg, p)
+			  || imm_expr->X_op != O_constant
+			  || !VALID_WCH_QK_UIMM5 ((valueT) imm_expr->X_add_number))
+			  break;
+		      ip->insn_opcode |= ENCODE_WCH_QK_UIMM5(imm_expr->X_add_number);
+		      goto rvc_imm_done;
+		    case '6': /* Xw6: uimm6_lsb0 0-62. Must be multiple of 2. */
+		      /* For qk.c.lhu and qk.c.sh. */
+		      if (riscv_handle_implicit_zero_offset (imm_expr, asarg))
+			continue;
+		      if (my_getSmallExpression (imm_expr, imm_reloc, asarg, p)
+			  || imm_expr->X_op != O_constant
+			  || !VALID_WCH_QK_UIMM6_LSB0 ((valueT) imm_expr->X_add_number))
+			  break;
+		      ip->insn_opcode |= ENCODE_WCH_QK_UIMM6_LSB0(imm_expr->X_add_number);
+		      goto rvc_imm_done;
+		    case '4': /* Xw4: uimm4 0-15. */
+		      /* For qk.c.lbusp and qk.c.sbsp. */
+		      if (riscv_handle_implicit_zero_offset (imm_expr, asarg))
+			continue;
+		      if (my_getSmallExpression (imm_expr, imm_reloc, asarg, p)
+			  || imm_expr->X_op != O_constant
+			  || !VALID_WCH_QK_UIMM4 ((valueT) imm_expr->X_add_number))
+			  break;
+		      ip->insn_opcode |= ENCODE_WCH_QK_UIMM4(imm_expr->X_add_number);
+		      goto rvc_imm_done;
+		    case '5': /* Xw5: uimm5_lsb0 0-30. Must be multiple of 2. */
+		      /* For qk.c.lhusp and qk.c.shsp. */
+		      if (riscv_handle_implicit_zero_offset (imm_expr, asarg))
+			continue;
+		      if (my_getSmallExpression (imm_expr, imm_reloc, asarg, p)
+			  || imm_expr->X_op != O_constant
+			  || !VALID_WCH_QK_UIMM5_LSB0 ((valueT) imm_expr->X_add_number))
+			  break;
+		      ip->insn_opcode |= ENCODE_WCH_QK_UIMM5_LSB0(imm_expr->X_add_number);
+		      goto rvc_imm_done;
+		    default:
+		      goto unknown_riscv_ip_operand;
+		    }
+		  break;
+
 		default:
 		  goto unknown_riscv_ip_operand;
 		}
@@ -5109,7 +5168,8 @@ s_riscv_option (int x ATTRIBUTE_UNUSED)
       riscv_arch_str (xlen, riscv_rps_as.subset_list, true/* update */);
 
       riscv_set_rvc (riscv_subset_supports (&riscv_rps_as, "c")
-		     || riscv_subset_supports (&riscv_rps_as, "zca"));
+		     || riscv_subset_supports (&riscv_rps_as, "zca")
+		     || riscv_subset_supports (&riscv_rps_as, "xw"));
 
       if (riscv_subset_supports (&riscv_rps_as, "ztso"))
 	riscv_set_tso ();

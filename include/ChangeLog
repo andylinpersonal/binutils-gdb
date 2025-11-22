@@ -1,3 +1,8 @@
+2025-11-23  Andy Lin <andylinpersonal@gmail.com>
+
+	* opcode/riscv-opc.h: Add MATCH and MASK opcode macros for XW.
+	* opcode/riscv.h (riscv_insn_class): Add INSN_CLASS_XWCH_QK.
+
 2025-07-13  Nick Clifton  <nickc@redhat.com>
 
 	* 2.45 Branch point.

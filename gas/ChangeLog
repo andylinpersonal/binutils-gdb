@@ -1,3 +1,18 @@
+2025-11-23  Andy Lin <andylinpersonal@gmail.com>
+
+	* config/tc-riscv.c (riscv_ip): Add XW to assembler.
+	* config/tc-riscv.c (validate_riscv_insn): Add XW.
+	* doc/c-riscv.texi: Note XW as an additional ISA extension for some
+	WCH's QingKe RISC-V MCU cores.
+	* testsuite/gas/riscv/march-help.l: Add '-xw' string.
+	* testsuite/gas/riscv/x-wch-qk-xw.d: New tests.
+	* testsuite/gas/riscv/x-wch-qk-xw.s: Likewise.
+	* testsuite/gas/riscv/x-wch-qk-xw-fail.d: Likewise.
+	* testsuite/gas/riscv/x-wch-qk-xw-fail.l: Likewise.
+	* testsuite/gas/riscv/x-wch-qk-xw-fail.s: Likewise.
+	* testsuite/gas/riscv/x-wch-qk-xw-norvc.d: New test for `norvc'.
+	* testsuite/gas/riscv/x-wch-qk-xw-norvc.s: Likewise.
+
 2025-09-16  Rainer Orth  <ro@CeBiTec.Uni-Bielefeld.DE>
 
 	* NEWS: Mention Solaris/PowerPC removal.

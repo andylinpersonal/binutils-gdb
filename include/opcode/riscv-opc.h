@@ -3811,6 +3811,23 @@
 /* Vendor-specific (SiFive) cease instruction.  */
 #define MATCH_SF_CEASE 0x30500073
 #define MASK_SF_CEASE 0xffffffff
+/* Qinheng QingKe Xw instructions. */
+#define MATCH_WCH_QK_C_LBU 0x2000
+#define MASK_WCH_QK_C_LBU 0xe003
+#define MATCH_WCH_QK_C_LHU 0x2002
+#define MASK_WCH_QK_C_LHU 0xe003
+#define MATCH_WCH_QK_C_SB 0xa000
+#define MASK_WCH_QK_C_SB 0xe003
+#define MATCH_WCH_QK_C_SH 0xa002
+#define MASK_WCH_QK_C_SH 0xe003
+#define MATCH_WCH_QK_C_LBUSP 0x8000
+#define MASK_WCH_QK_C_LBUSP 0xf863
+#define MATCH_WCH_QK_C_LHUSP 0x8020
+#define MASK_WCH_QK_C_LHUSP 0xf863
+#define MATCH_WCH_QK_C_SBSP 0x8040
+#define MASK_WCH_QK_C_SBSP 0xf863
+#define MATCH_WCH_QK_C_SHSP 0x8060
+#define MASK_WCH_QK_C_SHSP 0xf863
 /* SiFive custom int8 matrix-multiply instruction.  */
 #define MATCH_SFVQMACCU4X8X4 0xf200205b
 #define MASK_SFVQMACCU4X8X4 0xfe00707f
@@ -5022,6 +5039,15 @@ DECLARE_INSN(mips_ehb, MATCH_MIPS_EHB, MASK_MIPS_EHB)
 DECLARE_INSN(mips_ihb, MATCH_MIPS_IHB, MASK_MIPS_IHB)
 DECLARE_INSN(mips_pause, MATCH_MIPS_PAUSE, MASK_MIPS_PAUSE)
 DECLARE_INSN(mips_pref, MATCH_MIPS_PREF, MASK_MIPS_PREF)
+/* Vendor-specific (Qinheng QingKe Xw) instructions. */
+DECLARE_INSN(qk_c_lbu, MATCH_WCH_QK_C_LBU, MASK_WCH_QK_C_LBU)
+DECLARE_INSN(qk_c_lhu, MATCH_WCH_QK_C_LHU, MASK_WCH_QK_C_LHU)
+DECLARE_INSN(qk_c_sb, MATCH_WCH_QK_C_SB, MASK_WCH_QK_C_SB)
+DECLARE_INSN(qk_c_sh, MATCH_WCH_QK_C_SH, MASK_WCH_QK_C_SH)
+DECLARE_INSN(qk_c_lbusp, MATCH_WCH_QK_C_LBUSP, MASK_WCH_QK_C_LBUSP)
+DECLARE_INSN(qk_c_lhusp, MATCH_WCH_QK_C_LHUSP, MASK_WCH_QK_C_LHUSP)
+DECLARE_INSN(qk_c_sbsp, MATCH_WCH_QK_C_SBSP, MASK_WCH_QK_C_SBSP)
+DECLARE_INSN(qk_c_shsp, MATCH_WCH_QK_C_SHSP, MASK_WCH_QK_C_SHSP)
 #endif /* DECLARE_INSN */
 #ifdef DECLARE_CSR
 /* Unprivileged Counter/Timers CSRs.  */
