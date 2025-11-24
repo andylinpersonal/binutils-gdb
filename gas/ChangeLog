@@ -1,3 +1,18 @@
+2025-11-23  Andy Lin <andylinpersonal@gmail.com>
+
+	* config/tc-riscv.c (riscv_ip): Add Xwchc to assembler.
+	* config/tc-riscv.c (validate_riscv_insn): Add Xwchc.
+	* doc/c-riscv.texi: Note Xwchc as an additional ISA extension for some
+	WCH's QingKe RISC-V MCU cores.
+	* testsuite/gas/riscv/march-help.l: Add '-xwchc' string.
+	* testsuite/gas/riscv/x-wchc.d: New tests.
+	* testsuite/gas/riscv/x-wchc.s: Likewise.
+	* testsuite/gas/riscv/x-wchc-fail.d: Likewise.
+	* testsuite/gas/riscv/x-wchc-fail.l: Likewise.
+	* testsuite/gas/riscv/x-wchc-fail.s: Likewise.
+	* testsuite/gas/riscv/x-wchc-norvc.d: New test for `norvc'.
+	* testsuite/gas/riscv/x-wchc-norvc.s: Likewise.
+
 2025-09-16  Rainer Orth  <ro@CeBiTec.Uni-Bielefeld.DE>
 
 	* NEWS: Mention Solaris/PowerPC removal.

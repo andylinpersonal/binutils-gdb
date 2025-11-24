@@ -1,3 +1,11 @@
+2025-11-23  Andy Lin <andylinpersonal@gmail.com>
+
+	* elfxx-riscv.c (riscv_multi_subset_supports): Add support for
+	Xwchc extension.
+	* (riscv_multi_subset_supports_ext): Likewise.
+	* (riscv_update_subset_norvc): Xwchc opcodes should not be 
+	emitted under `norvc' mode.
+
 2025-09-16  Rainer Orth  <ro@CeBiTec.Uni-Bielefeld.DE>
 
 	* config.bfd <powerpc-*-solaris2*>: Remove.

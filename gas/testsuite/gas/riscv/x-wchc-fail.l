@@ -1,0 +1,33 @@
+.*: Assembler messages:
+.*: Error: unrecognized opcode `qk.c.lbu x8,0\(x8\)', extension `xwchc' required
+.*: Error: unrecognized opcode `qk.c.sb x8,0\(x8\)', extension `xwchc' required
+.*: Error: unrecognized opcode `qk.c.sb x8,-2\(x8\)', extension `xwchc' required
+.*: Error: unrecognized opcode `qk.c.sb x8,0\(x7\)', extension `xwchc' required
+.*: Error: illegal operands `qk.c.sb x7,0\(x8\)'
+.*: Error: illegal operands `qk.c.sb x7,-2\(x20\)'
+.*: Error: illegal operands `qk.c.lhu x8,1\(x8\)'
+.*: Error: illegal operands `qk.c.lhu x8,64\(x8\)'
+.*: Error: illegal operands `qk.c.sh x8,1\(x8\)'
+.*: Error: illegal operands `qk.c.sh x8,64\(x8\)'
+.*: Error: illegal operands `qk.c.sh x8,-1\(x8\)'
+.*: Error: illegal operands `qk.c.sh x8,-2\(x8\)'
+.*: Error: illegal operands `qk.c.sh x8,0\(x7\)'
+.*: Error: illegal operands `qk.c.sh x7,0\(x8\)'
+.*: Error: illegal operands `qk.c.sh x7,-2\(x20\)'
+.*: Error: illegal operands `qk.c.lbusp x8,0\(x8\)'
+.*: Error: illegal operands `qk.c.lbusp x8,32\(sp\)'
+.*: Error: illegal operands `qk.c.sbsp x8,0\(x8\)'
+.*: Error: illegal operands `qk.c.sbsp x8,32\(sp\)'
+.*: Error: illegal operands `qk.c.sbsp x8,-2\(sp\)'
+.*: Error: illegal operands `qk.c.sbsp x7,0\(sp\)'
+.*: Error: illegal operands `qk.c.sbsp x7,-2\(sp\)'
+.*: Error: illegal operands `qk.c.lhusp x8,0\(x8\)'
+.*: Error: illegal operands `qk.c.lhusp x8,1\(sp\)'
+.*: Error: illegal operands `qk.c.lhusp x8,32\(sp\)'
+.*: Error: illegal operands `qk.c.shsp x8,0\(x8\)'
+.*: Error: illegal operands `qk.c.shsp x8,1\(sp\)'
+.*: Error: illegal operands `qk.c.shsp x8,32\(sp\)'
+.*: Error: illegal operands `qk.c.shsp x8,-1\(sp\)'
+.*: Error: illegal operands `qk.c.shsp x8,-2\(sp\)'
+.*: Error: illegal operands `qk.c.shsp x7,0\(sp\)'
+.*: Error: illegal operands `qk.c.shsp x7,-2\(sp\)'

@@ -1,5 +1,8 @@
 -*- text -*-
 
+* Add support for RISC-V vendor extension:
+  QinHeng (WCH): Xwchc v1.0.
+
 * Emit an SFrame FRE with zero offsets to convey an undefined return address
   in the SFrame stack trace format.
 
@@ -133,7 +136,7 @@ Changes in 2.43:
 
 * Add a .base64 directive to the assembler which allows base64 encoded
   binary data to be provided as strings.
-  
+
 * Add support for 'armv9.5-a' for -march in AArch64 GAS.
 
 * In x86 Intel syntax undue mnemonic suffixes are now warned about.  This is
@@ -143,7 +146,7 @@ Changes in 2.43:
   the syntax \+ to access the number of times a given macro has been executed.
   This is similar to the already existing \@ syntax, except that the count is
   maintained on a per-macro basis.
-  
+
 * Support the NF feature in Intel APX.
 
 * Remove KEYLOCKER and SHA promotions from EVEX MAP4.

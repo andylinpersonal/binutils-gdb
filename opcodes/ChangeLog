@@ -1,3 +1,8 @@
+2025-11-23  Andy Lin <andylinpersonal@gmail.com>
+
+	* riscv-opc.c (riscv_opcodes): Add Xwchc opcodes and aliases.
+	* riscv-dis.c (print_insn_args): Add Xwchc opcode to disassembler.
+
 2025-07-13  Nick Clifton  <nickc@redhat.com>
 
 	* 2.45 Branch point.
